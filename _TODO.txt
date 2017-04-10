@@ -26,13 +26,13 @@ The following tasks (as tasks 3 and 4 above) are run in python 3 and require Num
 
 1. Word embedding using GloVe
    store word embedding in binary file embeddings.pkl
-   Time usage: 3h
+   Time usage: 1.5h
    File size: ~ 35 MB
 
 2. Building feature vectors from training dataset
 
 3. Train linear classifier (logistic regression or SVM?)
-   Time usage: long..
+   Time usage: ~0.5h
 
 4. Classify test data
 
