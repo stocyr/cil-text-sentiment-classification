@@ -46,7 +46,7 @@ def glove():
             xs[ix] = xs[ix] + ( 2*eta*f(n)*(np.log(n) - xs[ix].dot(ys[jy])) ) * ys[jy]
             ys[jy] = ys[jy] + ( 2*eta*f(n)*(np.log(n) - xs[ix].dot(ys[jy])) ) * xs[ix]    
     with open('scratch/embeddings.pkl', 'wb') as f:
-        pickle.dump(xs, f, pickle.HIGHEST_PROTOCOL)
+        pickle.dump(xs, f, 3)
 
 if __name__ == '__main__':
     glove()

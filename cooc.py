@@ -50,7 +50,7 @@ def main():
         col[:] = []
     print('Coocurence matrix writen: max = {}, nonzero elements = {}'.format(cooc.max(), cooc.count_nonzero()))
     with open('scratch/cooc.pkl', 'wb') as f:
-        pickle.dump(cooc, f, pickle.HIGHEST_PROTOCOL)
+        pickle.dump(cooc, f, 3)
 
 if __name__ == '__main__':
     main()

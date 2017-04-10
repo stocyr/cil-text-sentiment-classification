@@ -9,7 +9,7 @@ def main():
             vocab[line.strip()] = idx
 
     with open('scratch/vocab.pkl', 'wb') as f:
-        pickle.dump(vocab, f, pickle.HIGHEST_PROTOCOL)
+        pickle.dump(vocab, f, 3)
 
 
 if __name__ == '__main__':
