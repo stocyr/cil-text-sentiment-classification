@@ -1,5 +1,8 @@
 (file sizes and computation times are listed using the full corpus of 2*1.25M tweeds)
 
+Processing Chain
+=================
+
 1. build_vocab.sh
    build unique vocabulary set and count occurences
    -> here we select whether the small or the full corpus are used
@@ -39,15 +42,20 @@ The following tasks (as tasks 3 and 4 above) are run in python 3 and require Num
 
 
 TODOs:
+==========
+
+Toolchain convenience / usability:
+
 - Fix problems with large dataset:
   - I execute sum_duplicates periodically... is this the right way?
   - The large training dataset has unsanitized characters! UnicodeDecodeError: 'charmap' codec can't decode byte 0x9d in position 7072: character maps to <undefined>
-- cooc matrix: truncate to nmax = 100 and then convert type to uint8_t -> less RAM usage (by factor of ~11)
-- set up git repo on cluster
-  - fix problem with python execution there (in glove)
+- cooc matrix: truncate to nmax = 100 and use a coo_matrix with dtype=uint8_t  ->  less RAM usage (by factor of ~11)
 - write bash script with parameters:
   - enable local validation -> set of 10k tweeds are excluded from word embedding and classifier training
   - set # of tweeds in training dataset
 - evaluate usage of multithreading for computations -> does it use multiple cores?
+
+Classification accuracy:
+
 - exclude stopwords from vocabulary learning
 - reduce tokens to base words or try to find words with similar character sequences in them -> existing algorithms?
