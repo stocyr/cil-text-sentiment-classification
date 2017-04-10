@@ -44,4 +44,4 @@ print("Start fitting the linear classifier...".format(counter, fn))
 clf.fit(X,Y)
 
 # save classifier state to file
-joblib.dump(clf, 'scratch/classifier.joblib.pkl', compress=9, protocol=3)
+joblib.dump(clf, 'scratch/classifier.joblib.pkl', compress=9)

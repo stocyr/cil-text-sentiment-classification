@@ -1,5 +1,6 @@
 scratch/*
-
+submissions/*
+lsf.*
 
 ##################################
 # Python specific stuff

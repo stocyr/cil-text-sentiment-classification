@@ -2,6 +2,9 @@
 
 import csv
 import datetime
+import pickle
+import numpy as np
+import os
 from sklearn.externals import joblib
 from scipy.sparse import *
 
@@ -34,4 +37,6 @@ with open('datasets/test_data.txt') as f:
 
 # write classifications to csv file
 timestamp = datetime.date.today()
+if not os.path.exists('submissions/'):
+    os.makedirs('submissions/')
 np.savetxt('submissions/submission_{}.csv'.format(timestamp), test_tweeds, delimiter=",", fmt='%d', header='Id,Prediction', comments='')
