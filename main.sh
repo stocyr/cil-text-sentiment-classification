@@ -30,37 +30,37 @@ start=`date +%s`
 echo ""
 echo "Build unique vocabulary set and count occurences  ->  store in scratch/vocab.txt"
 echo "--------------------------------------------------------------------------------"
-#bash build_vocab.sh
+bash build_vocab.sh
 
 echo ""
 echo "Filter words which occure les than 5 times  ->  store in scratch/vocab_cut.txt"
 echo "--------------------------------------------------------------------------------"
-#bash cut_vocab.sh
+bash cut_vocab.sh
 
 echo ""
 echo "Convert text-based file to binary file  ->  store in scratch/vocab.pkl"
 echo "--------------------------------------------------------------------------------"
-#python3 pickle_vocab.py
+python3 pickle_vocab.py
 
 echo ""
 echo "Compute coocurence matrix from tweeds  ->  store in cooc.pkl"
 echo "--------------------------------------------------------------------------------"
-#python3 cooc.py
+python3 cooc.py
 
 echo ""
 echo "Learn word embedding with GloVe  ->  store in scratch/embeddings.pkl"
 echo "--------------------------------------------------------------------------------"
-#python3 glove.py
+python3 glove.py
 
 echo ""
 echo "Train linear classifier  ->  store in scratch/classifier.pkl"
 echo "--------------------------------------------------------------------------------"
-#python3 ??.py
+python3 train.py
 
 echo ""
 echo "Classify test data for submission  ->  save classification in folder submission/"
 echo "--------------------------------------------------------------------------------"
-#python3 ??.py
+python3 classify.py
 
 # stop measuring time
 end=`date +%s`
