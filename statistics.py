@@ -13,27 +13,43 @@ from progress import *
 raw_vocab = []
 with open('scratch/vocab.txt') as f:
     for line in f:
-        raw_vocab.append((line[8:], int(line[:7])))
+        raw_vocab.append((line[8:].strip(), int(line[:7])))
 
 # filter vocabulary by number of occurence
 raw_vocab_cut = [tup for tup in raw_vocab if tup[1] >= 5]
 
 n_words_total = 0
-for tup in raw_vocab:
-    n_words_total += tup[1]
-n_words_cut = 0
-for tup in raw_vocab_cut:
-    n_words_cut += tup[1]
+n_words_total = sum(n for _, n in raw_vocab)
+n_words_cut = sum(n for _, n in raw_vocab_cut)
 
 print('number of unique words:', len(raw_vocab))
 print('number of unique words with occurence >= 5:', len(raw_vocab_cut))
 print('remaining fraction of tokens in dictionary:', '{:.2f}%'.format(len(raw_vocab_cut)/len(raw_vocab)*100))
 print('remaining fraction of words in filtered corpus:', '{:.2f}%'.format(n_words_cut/n_words_total*100))
 
+# filter remaining vocabulary for stopwords
+stopwords = pickle.load(open('stopwords.pkl', 'rb'))
+raw_vocab_stopwords = [tup for tup in raw_vocab_cut if tup[0] in stopwords]
+print('fraction of stopwords in filtered dictionary:', '{:.2f}%'.format(len(raw_vocab_stopwords)/len(raw_vocab_cut)*100))
+print('fraction of stopword tokens in filtered corpus:', '{:.2f}%'.format(sum(n for _, n in raw_vocab_stopwords)/n_words_cut*100))
+
 # filter remaining vocabulary for words with numbers in them
 raw_vocab_digit = [tup for tup in raw_vocab_cut if any(c.isdigit() for c in tup[0])]
+print('fraction of words containing numbers in filtered dictionary:', '{:.2f}%'.format(len(raw_vocab_digit)/len(raw_vocab_cut)*100))
 
-print('fraction of words containing numbers in filtered corpus:', '{:.2f}%'.format(len(raw_vocab_digit)/len(raw_vocab_cut)*100))
+# filter remaining vocabulary for words composed only of special characters or punctuation
+raw_vocab_punct = [tup for tup in raw_vocab_cut if all(not c.isdigit() and not c.isalpha() for c in tup[0])]
+print('fraction of special chars and punctionation words in filtered dictionary:', '{:.2f}%'.format(len(raw_vocab_punct)/len(raw_vocab_cut)*100))
+print('fraction of special chars and punctionation tokens in filtered corpus:', '{:.2f}%'.format(sum(n for _, n in raw_vocab_punct)/n_words_cut*100))
+
+# filter remaining vocabulary for hashtag words
+raw_vocab_hashtag = [tup for tup in raw_vocab_cut if tup[0][0] == '#']
+print('fraction of hashtag words in filtered dictionary:', '{:.2f}%'.format(len(raw_vocab_hashtag)/len(raw_vocab_cut)*100))
+print('fraction of hashtag tokens in filtered corpus:', '{:.2f}%'.format(sum(n for _, n in raw_vocab_hashtag)/n_words_cut*100))
+
+# measure <user> occurence
+print('fraction of <user> token in filtered corpus:', '{:.2f}%'.format(dict(raw_vocab_cut)['<user>']/n_words_cut*100))
+print('fraction of <url> token in filtered corpus:', '{:.2f}%'.format(dict(raw_vocab_cut)['<url>']/n_words_cut*100))
 
 
 
@@ -70,5 +86,4 @@ print('Number of Tweeds with only one token assigned: {:} of {}'.format(len([tup
 print('Number of Tweeds with all tokens assigned: {:} of {}'.format(len([tup for tup in match if tup[1] == tup[0]]), len(match)))
 
 print('Average coverage with tokens: {:.2f}%'.format(np.average(npmatch[:,1] / npmatch[:,0])*100))
-print('Median coverage with tokens: {:.2f}%'.format(np.median(npmatch[:,1] / npmatch[:,0])*100))
 
