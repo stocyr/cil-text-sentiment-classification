@@ -15,9 +15,7 @@ echo "--------------------------------------------------------------------------
 echo "Starting text sentiment classification bash script"
 echo "--------------------------------------------------------------------------------"
 
-# if running on Euler cluster, first load python3 module
-NODENAME="$(uname -n)"
-if [[ ${NODENAME:0:5} = "euler" ]]; then
+if [[ ${HOME:1:7} = "cluster" ]]; then
 	echo "Running on Euler cluster! --> loading python3 module..."
 	module load python/3.3.3
 else

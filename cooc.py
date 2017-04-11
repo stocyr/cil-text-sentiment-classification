@@ -48,7 +48,7 @@ def main():
         del data
         row[:] = []
         col[:] = []
-    print('Coocurence matrix writen: max = {}, nonzero elements = {}'.format(cooc.max(), cooc.count_nonzero()))
+    print('Coocurence matrix writen: max = {}, nonzero entries = {}'.format(cooc.max(), cooc.nnz))
     with open('scratch/cooc.pkl', 'wb') as f:
         pickle.dump(cooc, f, 3)
 
