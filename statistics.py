@@ -36,6 +36,7 @@ print('fraction of stopword tokens in filtered corpus:', '{:.2f}%'.format(sum(n 
 # filter remaining vocabulary for words with numbers in them
 raw_vocab_digit = [tup for tup in raw_vocab_cut if any(c.isdigit() for c in tup[0])]
 print('fraction of words containing numbers in filtered dictionary:', '{:.2f}%'.format(len(raw_vocab_digit)/len(raw_vocab_cut)*100))
+print('fraction of words containing numbers in filtered corpus:', '{:.2f}%'.format(sum(n for _, n in raw_vocab_digit)/n_words_cut*100))
 
 # filter remaining vocabulary for words composed only of special characters or punctuation
 raw_vocab_punct = [tup for tup in raw_vocab_cut if all(not c.isdigit() and not c.isalpha() for c in tup[0])]

@@ -11,7 +11,7 @@ def main():
     vocab_size = len(vocab)
 
     data, row, col = [], [], []
-    progress = ProgressBar(1250000*2, 2000, name='tweeds')
+    progress = ProgressBar(1250000*2, 2000, name='tweets')
     counter = 1
     cooc = None
     for fn in ['datasets/train_pos_full.txt', 'datasets/train_neg_full.txt']:

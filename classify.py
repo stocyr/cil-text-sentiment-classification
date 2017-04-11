@@ -36,7 +36,7 @@ with open('datasets/test_data.txt') as f:
         test_tweeds.append([id, label])
 
 # write classifications to csv file
-timestamp = datetime.date.today()
+timestamp = '{:%Y-%m-%d_%H%M%S}'.format(datetime.datetime.now())
 if not os.path.exists('submissions/'):
     os.makedirs('submissions/')
 np.savetxt('submissions/submission_{}.csv'.format(timestamp), test_tweeds, delimiter=",", fmt='%d', header='Id,Prediction', comments='')

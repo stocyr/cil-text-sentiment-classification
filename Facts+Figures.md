@@ -13,12 +13,15 @@ Dataset vocabulary:
 - fraction of stopwords in filtered dictionary: 0.15%
 - fraction of stopword tokens in filtered corpus: 30.76%
 - fraction of words containing numbers in filtered dictionary: 10.02%
+- fraction of words containing numbers in filtered corpus: 2.26%
 - fraction of special chars and punctionation words in filtered dictionary: 0.13%
 - fraction of special chars and punctionation tokens in filtered corpus: 14.13%
 - fraction of hashtag words in filtered dictionary: 8.41%
 - fraction of hashtag tokens in filtered corpus: 0.60%
-- fraction of <user> token in filtered corpus: 4.15%
-- fraction of <url> token in filtered corpus: 1.36%
+- fraction of `<user>` token in filtered corpus: 4.15%
+- fraction of `<url>` token in filtered corpus: 1.36%
+
+In total, if filtering for stopwords, numbers, punctuation and special tokens, we remove 52% of text!
 
 Embedding:
 - Number of Tweeds with only one token assigned: 1012 of 2500000
